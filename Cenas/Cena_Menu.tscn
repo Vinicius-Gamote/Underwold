@@ -1,0 +1,211 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Audio/Musica/Menu.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/SCRIPT_Menu.gd" type="Script" id=2]
+[ext_resource path="res://Cenas/Cena_Rank_List.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Textures/Background/T_Background_Login.png" type="Texture" id=4]
+[ext_resource path="res://Shaders/crt_shader.shader" type="Shader" id=5]
+[ext_resource path="res://Shaders/Dissolve.tres" type="Material" id=6]
+[ext_resource path="res://Fonts/limbo_font__by_alex484000-d5dthys.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Cenas/Cena_Loja.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 5 )
+shader_param/screen_size = Vector2( 1280, 0 )
+shader_param/show_curvature = true
+shader_param/curvature_x_amount = 3.0
+shader_param/curvature_y_amount = 3.0
+shader_param/corner_color = Color( 0, 0, 0, 1 )
+shader_param/show_vignette = true
+shader_param/vignette_opacity = 1.0
+shader_param/show_horizontal_scan_lines = true
+shader_param/horizontal_scan_lines_amount = 180.0
+shader_param/horizontal_scan_lines_opacity = 0.1
+shader_param/show_vertical_scan_lines = false
+shader_param/vertical_scan_lines_amount = 320.0
+shader_param/vertical_scan_lines_opacity = 1.0
+shader_param/boost = 1.05
+shader_param/aberration_amount = 0.5
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("PP_Final:material:shader_param/screen_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1280, 0 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Menu_OST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+pitch_scale = 0.8
+autoplay = true
+
+[node name="T_Background_Login" type="Sprite" parent="."]
+material = ExtResource( 6 )
+position = Vector2( 1552, 736 )
+scale = Vector2( 0.539855, 0.522009 )
+texture = ExtResource( 4 )
+
+[node name="Menu" type="Node2D" parent="."]
+
+[node name="Logo" type="Label" parent="Menu"]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 968.0
+margin_bottom = 451.0
+custom_fonts/font = SubResource( 1 )
+text = "Underworld
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Novo_Jogo" type="Button" parent="Menu"]
+margin_left = 384.0
+margin_top = 368.0
+margin_right = 896.0
+margin_bottom = 408.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "Novo Jogo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Loja" type="Button" parent="Menu"]
+margin_left = 384.0
+margin_top = 472.0
+margin_right = 896.0
+margin_bottom = 512.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "Loja"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rank" type="Button" parent="Menu"]
+margin_left = 384.0
+margin_top = 424.0
+margin_right = 896.0
+margin_bottom = 464.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "RANK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sair" type="Button" parent="Menu"]
+margin_left = 384.0
+margin_top = 528.0
+margin_right = 896.0
+margin_bottom = 568.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "SAIR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Loja" parent="." instance=ExtResource( 8 )]
+visible = false
+
+[node name="SairLoja" type="Button" parent="Loja"]
+margin_left = 384.0
+margin_top = 648.0
+margin_right = 896.0
+margin_bottom = 688.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "Sair da LOJA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rank" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 8, 0 )
+
+[node name="Rank_Voltar" type="Button" parent="Rank"]
+margin_left = 440.0
+margin_top = 496.0
+margin_right = 816.0
+margin_bottom = 536.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "SAIR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PP_Final" type="ColorRect" parent="."]
+material = SubResource( 6 )
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="AnimationPlayer" parent="."]
+anims/Fade_In = SubResource( 7 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Menu/Novo_Jogo" to="." method="Novo_Jogo_pressed"]
+[connection signal="pressed" from="Menu/Loja" to="." method="Loja_pressed"]
+[connection signal="pressed" from="Menu/Rank" to="." method="Rank_pressed"]
+[connection signal="pressed" from="Menu/Sair" to="." method="Sair_pressed"]
+[connection signal="pressed" from="Loja/SairLoja" to="." method="SairLoja_pressed"]
+[connection signal="pressed" from="Rank/Rank_Voltar" to="." method="Rank_Voltar_pressed"]
+[connection signal="animation_finished" from="Fade" to="." method="_on_Fade_animation_finished"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

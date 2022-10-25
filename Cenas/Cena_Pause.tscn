@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Font_Resultado.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/limbo_font__by_alex484000-d5dthys.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/SCRIPT_Pause.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[node name="Node2D" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 432.0
+margin_top = 104.0
+margin_right = 848.0
+margin_bottom = 232.0
+custom_fonts/font = SubResource( 1 )
+text = "PAUSADO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Voltar_Jogo" type="Button" parent="."]
+margin_left = 480.0
+margin_top = 368.0
+margin_right = 800.0
+margin_bottom = 424.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "VOLTAR AO JOGO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Voltar_Menu" type="Button" parent="."]
+margin_left = 480.0
+margin_top = 456.0
+margin_right = 800.0
+margin_bottom = 512.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "VOLTAR AO Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Voltar_Jogo" to="." method="_on_Voltar_Jogo_pressed"]
+[connection signal="pressed" from="Voltar_Menu" to="." method="_on_Voltar_Menu_pressed"]

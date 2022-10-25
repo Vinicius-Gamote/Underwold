@@ -1,0 +1,110 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scripts/SCRIPT_Exploder.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Death_0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Death_1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Idle_0.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Death_2.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Death_3.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Run_3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Idle_1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Idle_2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Idle_3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Run_0.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Run_1.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Personagens/Exploder/Exploder 4x_Exploder - Run_2.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "Dead",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 64, 40.2849 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 219.786, 40.2849 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 185.559
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 72, 48.2849 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 38.3348, 13.3333 )
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2( 0.6, 0.6 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 0, -16 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+position = Vector2( 0, -44.8831 )
+scale = Vector2( 1.875, 1.875 )
+frames = SubResource( 1 )
+animation = "Idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 0, -24.1425 )
+shape = SubResource( 2 )
+
+[node name="FOV" type="Area2D" parent="KinematicBody2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/FOV"]
+position = Vector2( -253.496, -24.1425 )
+shape = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
+position = Vector2( 0, -24.1425 )
+shape = SubResource( 4 )
+
+[node name="HitExploder" type="Area2D" parent="KinematicBody2D"]
+position = Vector2( 0, 12.0712 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/HitExploder"]
+position = Vector2( 0, -24.1425 )
+shape = SubResource( 5 )
+
+[node name="ExHead" type="Area2D" parent="KinematicBody2D"]
+position = Vector2( 1.24858, -81.7034 )
+priority = 10.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/ExHead"]
+shape = SubResource( 6 )
+one_way_collision = true
+[connection signal="animation_finished" from="KinematicBody2D/AnimatedSprite" to="KinematicBody2D" method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="KinematicBody2D/FOV" to="KinematicBody2D" method="_on_FOV_body_entered"]
+[connection signal="body_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="KinematicBody2D/ExHead" to="KinematicBody2D" method="_on_ExHead_area_entered"]

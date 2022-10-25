@@ -1,0 +1,213 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://Sprites/Personagens/Player/Idle/Hero - 4x_Hero - Stand_1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Personagens/Player/Jump/Hero - 4x_Hero - Jump_1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Personagens/Player/Run_Attack/Hero - 4x_Hero - Run Atk_1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Personagens/Player/Death/Hero - 4x_Hero - Death_0.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Personagens/Player/Death/Hero - 4x_Hero - Death_2.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Personagens/Player/idle_Attack/Hero - 4x_Hero - Stand Atk_1.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Personagens/Player/Run_Attack/Hero - 4x_Hero - Run Atk_2.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Personagens/Player/Run_Attack/Hero - 4x_Hero - Run Atk_3.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Personagens/Player/Spawn/Hero - 4x_Hero - Spawn_2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Personagens/Player/Fall/Hero - 4x_Hero - Fall_0.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Personagens/Player/Death/Hero - 4x_Hero - Death_3.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Personagens/Player/Death/Hero - 4x_Hero - Death_1.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Personagens/Player/Idle/Hero - 4x_Hero - Stand_0.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Personagens/Player/Spawn/Hero - 4x_Hero - Spawn_1.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Personagens/Player/Spawn/Hero - 4x_Hero - Spawn_3.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Personagens/Player/Run_Attack/Hero - 4x_Hero - Run Atk_0.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Personagens/Player/Fall/Hero - 4x_Hero - Fall_1.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Personagens/Player/idle_Attack/Hero - 4x_Hero - Stand Atk_0.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Personagens/Player/Jump/Hero - 4x_Hero - Jump_0.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Personagens/Player/Spawn/Hero - 4x_Hero - Spawn_0.png" type="Texture" id=20]
+[ext_resource path="res://Scripts/SCRIPT_Player.gd" type="Script" id=21]
+[ext_resource path="res://Sprites/Personagens/Player/Run/Hero - 4x_Hero - Run_2.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Personagens/Player/Run/Hero - 4x_Hero - Run_0.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Personagens/Player/Run/Hero - 4x_Hero - Run_1.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Personagens/Player/Run/Hero - 4x_Hero - Run_3.png" type="Texture" id=25]
+[ext_resource path="res://Shaders/crt_shader.shader" type="Shader" id=26]
+[ext_resource path="res://Sprites/Vida/ui_heart_full.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Vida/ui_heart_half.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Vida/ui_heart_empty.png" type="Texture" id=29]
+[ext_resource path="res://Cenas/Cena_Pause.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scripts/SCRIPT_PlayerGeralNode.gd" type="Script" id=31]
+[ext_resource path="res://Shaders/crt_material.tres" type="Material" id=32]
+[ext_resource path="res://Audio/Game Over.wav" type="AudioStream" id=33]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Fall_Loop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Run_Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Idle_Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "Die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "Jump_Start",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "Spawn",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 32 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "Vida_Half",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ) ],
+"loop": true,
+"name": "Vida_Empty",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": true,
+"name": "Vida_Full",
+"speed": 5.0
+} ]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 26 )
+shader_param/screen_size = Vector2( 1280, 180 )
+shader_param/show_curvature = true
+shader_param/curvature_x_amount = 3.0
+shader_param/curvature_y_amount = 3.0
+shader_param/corner_color = Color( 0, 0, 0, 1 )
+shader_param/show_vignette = true
+shader_param/vignette_opacity = 1.0
+shader_param/show_horizontal_scan_lines = true
+shader_param/horizontal_scan_lines_amount = 180.0
+shader_param/horizontal_scan_lines_opacity = 0.3
+shader_param/show_vertical_scan_lines = true
+shader_param/vertical_scan_lines_amount = 320.0
+shader_param/vertical_scan_lines_opacity = 0.12
+shader_param/boost = 1.1
+shader_param/aberration_amount = 1.1
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 29.7382, 39.651 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 426.248 )
+
+[node name="Player_Node" type="Node2D"]
+script = ExtResource( 31 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+scale = Vector2( 0.807042, 0.807042 )
+script = ExtResource( 21 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+frames = SubResource( 1 )
+animation = "Die"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 2 )
+
+[node name="Tiro_Position" type="Position2D" parent="Player"]
+position = Vector2( 44.6288, 5.61865 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2( 1.23909, 1.23909 )
+current = true
+smoothing_enabled = true
+
+[node name="Sprite_Vida" type="Sprite" parent="Player/Camera2D"]
+visible = false
+position = Vector2( -408.001, -280.001 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 13 )
+
+[node name="AnimatedSprite_Vida" type="AnimatedSprite" parent="Player/Camera2D"]
+position = Vector2( 0, -48.0001 )
+scale = Vector2( 1.50001, 1.50001 )
+frames = SubResource( 3 )
+animation = "Vida_Full"
+playing = true
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
+material = SubResource( 4 )
+margin_left = -640.001
+margin_top = -360.001
+margin_right = 639.999
+margin_bottom = 359.999
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerHitBox" type="Area2D" parent="Player"]
+
+[node name="HitBox" type="CollisionShape2D" parent="Player/PlayerHitBox"]
+shape = SubResource( 5 )
+
+[node name="TiroLimite" type="Area2D" parent="Player" groups=[
+"TiroLimite",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/TiroLimite"]
+position = Vector2( -475.812, -9.53674e-07 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/TiroLimite"]
+position = Vector2( 475.812, 0 )
+shape = SubResource( 6 )
+
+[node name="Tiro_Timer" type="Timer" parent="Player"]
+wait_time = 0.3
+
+[node name="DeadSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 33 )
+volume_db = -15.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 10
+
+[node name="PauseScreen" parent="ParallaxBackground" instance=ExtResource( 30 )]
+visible = false
+position = Vector2( -8.00012, -3.05176e-05 )
+scale = Vector2( 1.01289, 1.01289 )
+
+[node name="ColorRect2" type="ColorRect" parent="ParallaxBackground/PauseScreen"]
+material = ExtResource( 32 )
+margin_right = 1280.0
+margin_bottom = 719.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="Player/AnimatedSprite" to="Player" method="Animation_finished"]
+[connection signal="area_entered" from="Player/PlayerHitBox" to="Player" method="Area2D_area_entered"]
+[connection signal="timeout" from="Player/Tiro_Timer" to="Player" method="Tiro_Timer_End"]

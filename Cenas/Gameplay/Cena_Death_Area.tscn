@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.13622, 6.22724 )
+
+[node name="Death_AreaNode" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Death_Area" type="Area2D" parent="."]
+scale = Vector2( 100, 2.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death_Area"]
+shape = SubResource( 1 )

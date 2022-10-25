@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/Personagens/Ghost/Ghost 4x_Ghost - Projectile_0.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Personagens/Ghost/Ghost 4x_Ghost - Projectile_1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Personagens/Ghost/Ghost 4x_Ghost - Projectile_3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Personagens/Ghost/Ghost 4x_Ghost - Projectile_2.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/SCRIPT_Ghost_Tiro.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Tiro",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 16 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Ghost_Tiro" type="Area2D" parent="."]
+scale = Vector2( -1, 1 )
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Ghost_Tiro"]
+frames = SubResource( 1 )
+animation = "Tiro"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ghost_Tiro"]
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="Ghost_Tiro"]
+autostart = true
+[connection signal="timeout" from="Ghost_Tiro/Timer" to="Ghost_Tiro" method="_on_Timer_timeout"]

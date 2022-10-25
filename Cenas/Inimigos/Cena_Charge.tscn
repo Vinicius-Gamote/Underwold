@@ -1,0 +1,102 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Idle_3.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Idle_2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Idle_0.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Idle_1.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/SCRIPT_Charge.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Ready Attack_1.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Charge_2.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Charge_1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Death_2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Ready Attack_3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Charge_3.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Death_3.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Ready Attack_2.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Charge_0.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Death_0.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Death_1.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Personagens/Charger/Charger - 4x_Charger - Ready Attack_0.png" type="Texture" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 9 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "Dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 10 ) ],
+"loop": false,
+"name": "Pre_Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 72, 64 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 224, 64 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 112.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 80, 72 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 80, 72 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+position = Vector2( -8.00001, -120 )
+scale = Vector2( 0.96875, 0.96875 )
+frames = SubResource( 1 )
+animation = "Idle"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 0, -56 )
+shape = SubResource( 2 )
+
+[node name="FOVArea" type="Area2D" parent="KinematicBody2D"]
+
+[node name="FOVCollision" type="CollisionShape2D" parent="KinematicBody2D/FOVArea"]
+position = Vector2( -192, -56 )
+shape = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
+position = Vector2( 0, -56 )
+shape = SubResource( 4 )
+
+[node name="Charger_HitBox" type="Area2D" parent="KinematicBody2D"]
+
+[node name="ChargeCollision" type="CollisionShape2D" parent="KinematicBody2D/Charger_HitBox"]
+position = Vector2( 0, -56 )
+shape = SubResource( 5 )
+
+[node name="HITBOXC" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/HITBOXC"]
+position = Vector2( 0, -64 )
+shape = SubResource( 6 )
+[connection signal="animation_finished" from="KinematicBody2D/AnimatedSprite" to="KinematicBody2D" method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="KinematicBody2D/FOVArea" to="KinematicBody2D" method="_on_FOVArea_body_entered"]
+[connection signal="body_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="KinematicBody2D/Charger_HitBox" to="KinematicBody2D" method="_on_HitBox_area_entered"]

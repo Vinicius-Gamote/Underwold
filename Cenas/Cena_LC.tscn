@@ -1,0 +1,300 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/Login/SCRIPT_GlobalLGC.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Background/T_Background_Login.png" type="Texture" id=2]
+[ext_resource path="res://Shaders/crt_shader.shader" type="Shader" id=3]
+[ext_resource path="res://Fonts/Thrylos.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 3
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+outline_size = 3
+outline_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PP:material:shader_param/screen_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1280, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 3 )
+shader_param/screen_size = Vector2( 1280, 0 )
+shader_param/show_curvature = true
+shader_param/curvature_x_amount = 3.0
+shader_param/curvature_y_amount = 3.0
+shader_param/corner_color = Color( 0, 0, 0, 1 )
+shader_param/show_vignette = true
+shader_param/vignette_opacity = 1.0
+shader_param/show_horizontal_scan_lines = true
+shader_param/horizontal_scan_lines_amount = 180.0
+shader_param/horizontal_scan_lines_opacity = 0.1
+shader_param/show_vertical_scan_lines = true
+shader_param/vertical_scan_lines_amount = 320.0
+shader_param/vertical_scan_lines_opacity = 0.06
+shader_param/boost = 2.0
+shader_param/aberration_amount = 1.0
+
+[node name="Node_LoginCadastro" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background_Login" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 640, 328 )
+scale = Vector2( 0.25, 0.226675 )
+texture = ExtResource( 2 )
+
+[node name="Label_Logo" type="Label" parent="."]
+margin_left = 448.0
+margin_top = 120.0
+margin_right = 832.0
+margin_bottom = 267.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0.619608, 0.301961, 1 )
+text = "Underworld
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Global" type="Node2D" parent="."]
+
+[node name="LE_Senha" type="LineEdit" parent="Global"]
+margin_left = 523.201
+margin_top = 333.773
+margin_right = 754.201
+margin_bottom = 357.773
+secret = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LE_Username" type="LineEdit" parent="Global"]
+margin_left = 522.781
+margin_top = 296.932
+margin_right = 754.781
+margin_bottom = 320.932
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Senha" type="Label" parent="Global"]
+margin_left = 475.6
+margin_top = 339.426
+margin_right = 517.6
+margin_bottom = 353.426
+text = "Senha:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Username" type="Label" parent="Global"]
+margin_left = 401.812
+margin_top = 301.854
+margin_right = 521.812
+margin_bottom = 349.854
+text = "Nome de Usuario:
+
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B_Login" type="Button" parent="Global"]
+margin_left = 536.0
+margin_top = 384.0
+margin_right = 744.0
+margin_bottom = 411.0
+text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LB_Cadastrar" type="LinkButton" parent="Global"]
+margin_left = 656.0
+margin_top = 424.0
+margin_right = 715.0
+margin_bottom = 438.0
+custom_colors/font_color = Color( 0, 0.345098, 1, 1 )
+text = "Cadastrar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ou" type="Label" parent="Global"]
+margin_left = 624.0
+margin_top = 424.0
+margin_right = 656.0
+margin_bottom = 455.0
+text = "Ou
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CB_Senha" type="CheckBox" parent="Global"]
+margin_left = 761.378
+margin_top = 334.146
+margin_right = 880.378
+margin_bottom = 358.146
+text = "Mostrar Senha"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cadastro" type="Node2D" parent="."]
+visible = false
+
+[node name="Label_Email" type="Label" parent="Cadastro"]
+margin_left = 472.0
+margin_top = 264.0
+margin_right = 516.0
+margin_bottom = 278.0
+text = "E-mail:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LE_Email" type="LineEdit" parent="Cadastro"]
+margin_left = 522.52
+margin_top = 258.645
+margin_right = 754.52
+margin_bottom = 282.645
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Warning" type="Label" parent="Cadastro"]
+visible = false
+margin_left = 760.0
+margin_top = 304.0
+margin_right = 1096.0
+margin_bottom = 335.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "O Campo usuario não pode ficar vazio.
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Login" type="Node2D" parent="."]
+position = Vector2( 640, 328 )
+
+[node name="Popup" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Popup"]
+margin_top = 232.0
+margin_right = 1280.0
+margin_bottom = 512.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PPU_Color" type="ColorRect" parent="Popup"]
+margin_top = 176.0
+margin_right = 1280.0
+margin_bottom = 240.0
+color = Color( 0.392157, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_PPU_Title" type="Label" parent="Popup"]
+margin_left = 488.0
+margin_top = 184.0
+margin_right = 800.0
+margin_bottom = 251.0
+custom_fonts/font = SubResource( 3 )
+text = "ERROR NO LOGIN
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_PPU_Message" type="Label" parent="Popup"]
+margin_left = 128.0
+margin_top = 256.0
+margin_right = 1152.0
+margin_bottom = 384.0
+custom_fonts/font = SubResource( 4 )
+text = "Mensagem de erro"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_PPU_Okay" type="Button" parent="Popup"]
+margin_left = 488.0
+margin_top = 400.0
+margin_right = 792.0
+margin_bottom = 440.0
+text = "Okay"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Fade" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fade_oUT = SubResource( 5 )
+
+[node name="PP" type="ColorRect" parent="."]
+material = SubResource( 6 )
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Global/B_Login" to="." method="Login_pressed"]
+[connection signal="pressed" from="Global/LB_Cadastrar" to="." method="Cadastrar_pressed"]
+[connection signal="pressed" from="Global/CB_Senha" to="." method="MostrarSenha"]
+[connection signal="pressed" from="Global/CB_Senha" to="." method="_on_CheckBox_pressed"]
+[connection signal="pressed" from="Popup/Button_PPU_Okay" to="." method="_Okay_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="HTTPRequest_completed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
